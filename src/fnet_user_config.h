@@ -10,13 +10,16 @@
 #define FNET_CFG_COMP_GNUC  (1) //GCC compiler
 
 #include <Arduino.h>
-#define FNET_CFG_MULTITHREADING (1)
-#define FNET_CFG_BENCH_CLN (1)  //Benchmark
+#define FNET_CFG_MULTITHREADING (0)
+#define FNET_CFG_BENCH_CLN (0)  //Benchmark
 #define FNET_CFG_BENCH_CLN_BUFFER_SIZE          (64*1024)
 #define FNET_CFG_SOCKET_TCP_TX_BUF_SIZE     (32U * 1024U)
 #define FNET_CFG_SOCKET_TCP_RX_BUF_SIZE     (32U * 1024U)
-#define FNET_CFG_BENCH_SRV (1)  //Benchmark
+#define FNET_CFG_BENCH_SRV (0)  //Benchmark
 #define FNET_CFG_BENCH_SRV_BUFFER_SIZE          (128*1024)
+
+#define FNET_CFG_LOOPBACK                       (1)
+#define FNET_CFG_CPU_ETH_PHY_ADDR_DISCOVER      (1) // needed for DP83826
 
 //#define FNET_CFG_SOCKET_CALLBACK_ON_RX (1)
 
@@ -330,7 +333,7 @@ fnet_return_t fnet_cpu_serial_init(fnet_index_t port_number, fnet_uint32_t baud_
 * IPv4 and/or IPv6 protocol support.
 ******************************************************************************/
 #define FNET_CFG_IP4                (1)
-//#define FNET_CFG_IP6                (1)
+#define FNET_CFG_IP6                (1)
 
 /**************************************************************************/ /*!
  * @def      FNET_CFG_IP_MAX_PACKET
@@ -339,7 +342,7 @@ fnet_return_t fnet_cpu_serial_init(fnet_index_t port_number, fnet_uint32_t baud_
  *           Default value is 10 KB.
  * @showinitializer
  ******************************************************************************/
-#define FNET_CFG_IP_MAX_PACKET              (32U*1024U)
+//#define FNET_CFG_IP_MAX_PACKET              (32U*1024U)
 
 /*****************************************************************************
 * TCP protocol support.
