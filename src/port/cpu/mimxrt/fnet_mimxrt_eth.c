@@ -118,10 +118,16 @@ static fnet_return_t fnet_mimxrt_eth_init(fnet_netif_t *netif)
     //  Serial.printf("RCSR:%04X, LEDCR:%04X, PHYCR %04X\n",
     //    mdio_read(0, 0x17), mdio_read(0, 0x18), mdio_read(0, 0x19));
 
+      // make this thing work with DP83826 as well as with DP83825^M
+      _fnet_eth_phy_discover_addr (netif, 0); 
+
       // LEDCR offset 0x18, set LED_Link_Polarity, pg 62
       _fnet_eth_phy_write(netif, 0x18, 0x0280); // LED shows link status, active high
       // RCSR offset 0x17, set RMII_Clock_Select, pg 61
-      _fnet_eth_phy_write(netif, 0x17, 0x0081); // config for 50 MHz clock input
+
+      // Original value for 0x17 was 0x0081. However, 0x00e1 seems to work with DP83826 as well as DP83825.
+      _fnet_eth_phy_write(netif, 0x17, 0x00e1); // config for 50 MHz clock input (bit 7) and set RMII-Slave-Mode (bits 5,6)
+
 
     //  Serial.printf("RCSR:%04X, LEDCR:%04X, PHYCR %04X\n",
     //    mdio_read(0, 0x17), mdio_read(0, 0x18), mdio_read(0, 0x19));
