@@ -361,11 +361,15 @@ fnet_uint16_t _fnet_socket_get_uniqueport( fnet_socket_if_t *head, struct fnet_s
 
     do
     {
-        local_port++;
+        // pick a random port
+        local_port = FNET_SOCKET_PORT_EPHEMERAL_BEGIN + 
+            (fnet_rand() % (FNET_SOCKET_PORT_EPHEMERAL_END - FNET_SOCKET_PORT_EPHEMERAL_BEGIN + 1));
+        /*
         if((local_port < FNET_SOCKET_PORT_EPHEMERAL_BEGIN) || (local_port >= FNET_SOCKET_PORT_EPHEMERAL_END))
         {
             local_port = (fnet_uint16_t)FNET_SOCKET_PORT_EPHEMERAL_BEGIN;
         }
+        */
         local_addr_tmp.sa_port = fnet_htons(local_port);
     }
     while (_fnet_socket_conflict(head, &local_addr_tmp, FNET_NULL, FNET_TRUE));
