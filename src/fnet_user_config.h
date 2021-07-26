@@ -20,6 +20,7 @@
 
 #define FNET_CFG_LOOPBACK                       (1)
 #define FNET_CFG_CPU_ETH_PHY_ADDR_DISCOVER      (1) // needed for DP83826
+#define FNET_CFG_DNS_RESOLVED_ADDR_MAX          (32)
 
 //#define FNET_CFG_SOCKET_CALLBACK_ON_RX (1)
 
